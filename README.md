@@ -5,10 +5,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Installation
 
-Clone this repository and install its dependencies by running:
-`$ npm install`
+Clone this repository and cd into the newly created project directory.
 
-Once installed, cd into the newly created project directory.
+Install project dependencies by running:
+```$ npm install```
 
 ## Running the Project
 
