@@ -2,9 +2,12 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import Header from '../Header';
-import {ArtistSearchDispatchProps} from './index';
+import {ArtistSearchDispatchProps, ArtistSearchStateProps} from './index';
+import ArtistCard from "./ArtistCard";
 
-const ArtistSearch = (props: ArtistSearchDispatchProps) => {
+type ArtistSearchProps = ArtistSearchStateProps & ArtistSearchDispatchProps;
+
+const ArtistSearch = ({ artists, onArtistSearch }: ArtistSearchProps) => {
   const [ artistName, setArtistName ] = React.useState('');
   const [ message, setMessage ] = React.useState('');
 
@@ -19,11 +22,12 @@ const ArtistSearch = (props: ArtistSearchDispatchProps) => {
   const handleArtistSearch = () => {
     if (artistName !== '') {
       setMessage('');
-      props.onArtistSearch(artistName);
+      onArtistSearch(artistName);
     } else {
       setMessage('Please enter an artist\'s name')
     }
   }
+
   return (
     <>
       <Header />
@@ -34,6 +38,13 @@ const ArtistSearch = (props: ArtistSearchDispatchProps) => {
           onKeyUp={handleInputChange}
         />
       </Search>
+      <Artists>
+        {artists && artists.length > 0 && artists.map(artist => {
+          return (
+            <ArtistCard key={artist.uri} artist={artist} />
+          )
+        })}
+      </Artists>
       <Message>{message !== '' && message}</Message>
     </>
   );
@@ -43,7 +54,7 @@ export default ArtistSearch;
 
 const Search = styled.div`
   width: 100vw;
-  margin-top: 40px;
+  margin: 40px 0 20px 0;
   display: flex;
   align-items: center;
 `;
@@ -54,6 +65,15 @@ const SearchBar = styled.input`
   width: 400px;
   font-size: 16px;
   padding-left: 10px;
+`;
+
+const Artists = styled.div`
+  max-width: 100vw;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: auto;
 `;
 
 const Message = styled.div`

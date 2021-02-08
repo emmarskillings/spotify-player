@@ -140,20 +140,5 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-app.get('/artist_search', (req, res) => {
-
-  const authOptions = {
-    url: 'https://api.spotify.com/v1/search',
-    headers: { 'Authorization': 'Bearer ' + bo }
-  }
-
-  request.get(authOptions, function(error, response, body) {
-    if (!error && response.statusCode === 200) {
-      const access_token = body.access_token
-      console.log(body);
-    }
-  });
-})
-
 console.log('Listening on port 8888');
 app.listen(8888);

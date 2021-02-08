@@ -7,7 +7,7 @@ const artistsReducer = (
 ) => {
   switch (action.type) {
     case actions.SET_ARTISTS:
-      return action.payload.artists;
+      return action.payload.artists.items;
 
     default:
       return state;
