@@ -8,10 +8,10 @@ import theme from './theme';
 import App from './App';
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Poppins:400,400i,600,600i&display=swap');
   body {
     margin: 0;
-    font-family: "Poppins", sans-serif;
+    font-family: "SF Pro", sans-serif;
+    color: #222222;
   }
 `;
 

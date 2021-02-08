@@ -1,7 +1,8 @@
 import * as React from 'react';
 import styled from 'styled-components';
-
 import { useHistory } from 'react-router-dom';
+
+import LogoWhite from '../images/Spotify_Icon_RGB_White.png';
 
 const formatLongNumber = (number: number) => {
   return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
@@ -29,7 +30,7 @@ export const ArtistCard = ({ artist, handleSearchAlbums }: ArtistCardProps) => {
   }
 
   return (
-    <Card onClick={() => handleSelectArtist(artist.name)}>
+    <CardWrapper onClick={() => handleSelectArtist(artist.name)}>
       <Image image={artist.images && artist.images[0] && artist.images[0].url} />
       <Details>
         <Name>{artist.name}</Name>
@@ -41,7 +42,7 @@ export const ArtistCard = ({ artist, handleSearchAlbums }: ArtistCardProps) => {
           }
         </Popularity>
       </Details>
-    </Card>
+    </CardWrapper>
   )
 }
 
@@ -51,28 +52,41 @@ type AlbumCardProps = {
 }
 
 export const AlbumCard = ({ album, artist }: AlbumCardProps) => {
+  const date = album.release_date;
+
   return (
-    <Card>
-      <Image image={album.images && album.images[0] && album.images[0].url} />
-      <Details>
-        <Name>{album.name}</Name>
-        <Followers>{artist}</Followers>
-        <Text>{album.release_date}</Text>
-        <Text>{album.total_tracks}</Text>
-      </Details>
-      <SpotifyButton><a href={album.external_urls.spotify} target="_blank">Preview on Spotify</a></SpotifyButton>
-    </Card>
+    <AlbumCardWrapper>
+      <div>
+        <Image image={album.images && album.images[0] && album.images[0].url} />
+        <Details>
+          <Name>{album.name}</Name>
+          <Followers>{artist}</Followers>
+          <Text>{date}</Text>
+          <Text>{album.total_tracks} tracks</Text>
+        </Details>
+        </div>
+      <SpotifyButton>
+        <Link href={album.external_urls.spotify} target="_blank">PLAY ON SPOTIFY</Link>
+        <Icon />
+      </SpotifyButton>
+    </AlbumCardWrapper>
   )
 }
 
-const Card = styled.div`
-  min-height: 400px;
+const CardWrapper = styled.div`
+  min-height: 350px;
   width: 250px;
-  background-color: lightgrey;
+  background-color: #222222;
+  color: white;
   margin: 20px 10px;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
+`;
+
+const AlbumCardWrapper = styled(CardWrapper)`
+  height: 425px;
+  justify-content: space-between;
 `;
 
 const Image = styled.div<{ image: string }>`
@@ -96,7 +110,7 @@ const Name = styled.div`
 
 const Followers = styled.div`
   font-size: 14px;
-  padding: 5px 0;
+  padding: 5px 0 15px 0;
 `;
 
 const Popularity = styled.div`
@@ -104,8 +118,32 @@ const Popularity = styled.div`
 `;
 
 const Text = styled.div`
+  font-size: 12px;
+  line-height: 16px;
+`;
+
+const SpotifyButton = styled.div`
+  height: 40px;
+  background-color: #1DB954;
+  border: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Link = styled.a`
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  line-height: 40px;
   font-size: 14px;
 `;
 
-const SpotifyButton = styled.button`
+const Icon = styled.div`
+  height: 25px;
+  width: 25px;
+  margin: 7px 0 0 10px;
+  background-image: url(${LogoWhite});
+  background-size: cover;
 `;

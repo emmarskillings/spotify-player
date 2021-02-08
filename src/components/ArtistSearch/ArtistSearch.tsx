@@ -26,7 +26,7 @@ const ArtistSearch = ({ artists, onArtistsSearch, onAlbumsSearch }: ArtistSearch
       <Header />
       <Search>
         <SearchBar
-          placeholder="Search for an artist"
+          placeholder="Search for an artist..."
           // @ts-ignore
           onKeyUp={handleInputChange}
         />
@@ -53,10 +53,12 @@ const Search = styled.div`
 
 const SearchBar = styled.input`
   margin: auto;
-  height: 30px;
+  height: 40px;
   width: 400px;
-  font-size: 16px;
+  font-size: 18px;
   padding-left: 10px;
+  border: 2px solid #222222;
+  border-radius: 5px;
 `;
 
 export const Wrapper = styled.div`
