@@ -6,11 +6,12 @@ export type AlbumsStateProps = {
   artist: string,
 };
 
-const mapStateToProps = (state: Object) => {
-  const { albums } = state;
+const mapStateToProps = (state: Object): AlbumsStateProps => {
+  const { albums: { albums, artist } } = state;
 
   return {
-    albums
+    albums,
+    artist,
   };
 };
 
