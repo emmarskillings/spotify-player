@@ -1,5 +1,4 @@
 import {
-  all,
   call,
   put,
   takeLatest,
@@ -8,6 +7,7 @@ import {
 import * as actions from '../actions';
 import { get } from '../utils/api';
 
+// Queries Spotify API for artists based on user search query
 async function apiArtistSearch(searchQuery: string) {
   const API_URL = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
     searchQuery
@@ -16,6 +16,7 @@ async function apiArtistSearch(searchQuery: string) {
   return await get(API_URL);
 }
 
+// Queries Spotify API for albums based on artist name
 async function apiAlbumSearch(artistName: string) {
   const API_URL = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
     artistName
@@ -57,6 +58,6 @@ const sagas = {
   * expectsAlbumsSearch(): Generator<Effect, void, void> {
     yield takeLatest(actions.SEARCH_ALBUMS, albumSearch)
   },
-}
+};
 
 export default sagas;

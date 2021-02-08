@@ -2,17 +2,18 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
-import LogoWhite from '../images/Spotify_Icon_RGB_White.png';
+import SpotifyIconWhite from '../images/Spotify_Icon_RGB_White.png';
 
 const formatLongNumber = (number: number) => {
   return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
-}
+};
 
 type ArtistCardProps = {
   artist: Object,
   handleSearchAlbums: Function,
-}
+};
 
+// Cards displayed on /artist-search page
 export const ArtistCard = ({ artist, handleSearchAlbums }: ArtistCardProps) => {
   const history = useHistory();
 
@@ -43,14 +44,15 @@ export const ArtistCard = ({ artist, handleSearchAlbums }: ArtistCardProps) => {
         </Popularity>
       </Details>
     </CardWrapper>
-  )
-}
+  );
+};
 
 type AlbumCardProps = {
   album: Object,
   artist: string,
-}
+};
 
+// Cards displayed on /albums page
 export const AlbumCard = ({ album, artist }: AlbumCardProps) => {
   const date = album.release_date;
 
@@ -64,14 +66,14 @@ export const AlbumCard = ({ album, artist }: AlbumCardProps) => {
           <Text>{date}</Text>
           <Text>{album.total_tracks} tracks</Text>
         </Details>
-        </div>
+      </div>
       <SpotifyButton>
         <Link href={album.external_urls.spotify} target="_blank">PLAY ON SPOTIFY</Link>
-        <Icon />
+        <SpotifyIcon />
       </SpotifyButton>
     </AlbumCardWrapper>
-  )
-}
+  );
+};
 
 const CardWrapper = styled.div`
   min-height: 350px;
@@ -140,10 +142,10 @@ const Link = styled.a`
   font-size: 14px;
 `;
 
-const Icon = styled.div`
-  height: 25px;
-  width: 25px;
-  margin: 7px 0 0 10px;
-  background-image: url(${LogoWhite});
+const SpotifyIcon = styled.div`
+  height: 21px;
+  width: 21px;
+  margin: 10px 0 0 10px;
+  background-image: url(${SpotifyIconWhite});
   background-size: cover;
 `;

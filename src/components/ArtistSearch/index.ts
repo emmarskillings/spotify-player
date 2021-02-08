@@ -5,12 +5,12 @@ import * as actions from '../../actions';
 
 export type ArtistSearchStateProps = {
   artists: Object[],
-}
+};
 
 export type ArtistSearchDispatchProps = {
   onArtistsSearch: Function,
   onAlbumsSearch: Function,
-}
+};
 
 const mapStateToProps = (state: Object) => {
   const { artists } = state;
@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch: Function): ArtistSearchDispatchProps => ({
   onAlbumsSearch: (artistName: string) => dispatch(actions.searchAlbums(artistName)),
 });
 
+// Maps state and dispatch to ArtistSearch component
 const ArtistSearchContainer = connect(
   mapStateToProps,
   mapDispatchToProps,

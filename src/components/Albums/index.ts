@@ -4,7 +4,7 @@ import Albums from './Albums';
 export type AlbumsStateProps = {
   albums: Object[],
   artist: string,
-}
+};
 
 const mapStateToProps = (state: Object) => {
   const { albums: { albums, artist } } = state;
@@ -15,6 +15,7 @@ const mapStateToProps = (state: Object) => {
   };
 };
 
+// Maps state and dispatch to Albums component
 const AlbumsContainer = connect(
   mapStateToProps,
   null,

@@ -6,7 +6,7 @@ import { Wrapper } from "../ArtistSearch/ArtistSearch";
 import { AlbumCard } from '../Cards';
 import { AlbumsStateProps } from './index';
 
-
+// Display artist's albums on /albums page
 const Albums = ({ albums, artist }: AlbumsStateProps) => (
   <>
     <Header />

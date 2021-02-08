@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import Header, { Icon } from './Header';
+import Header, { SpotifyIcon } from './Header';
 import styled from "styled-components";
 
 const Home = () => (
@@ -9,10 +9,10 @@ const Home = () => (
     <Header />
     <LoginButton >
       <Link href="http://localhost:8888/login">LOGIN WITH SPOTIFY</Link>
-      <LoginIcon />
+      <LoginSpotifyIcon />
     </LoginButton>
   </>
-  );
+);
 
 export default connect()(Home);
 
@@ -41,8 +41,10 @@ const Link = styled.a`
   font-size: 18px;
   font-weight: bold;
   line-height: 60px;
-`
+`;
 
-const LoginIcon = styled(Icon)`
-  margin: 10px 0 0 10px;
+const LoginSpotifyIcon = styled(SpotifyIcon)`
+  margin: 15px 0 0 10px;
+  height: 30px;
+  width: 30px;
 `;

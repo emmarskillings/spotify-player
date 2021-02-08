@@ -7,19 +7,20 @@ import { ArtistCard } from "../Cards";
 
 type ArtistSearchProps = ArtistSearchStateProps & ArtistSearchDispatchProps;
 
+// Displays artists based on user query
 const ArtistSearch = ({ artists, onArtistsSearch, onAlbumsSearch }: ArtistSearchProps) => {
   const handleInputChange = (event: { target: { value: any; }; keyCode: number; }) => {
     const query = event.target.value;
     if (event.keyCode === 13) {
       handleSearchArtists(query)
     }
-  }
+  };
 
   const handleSearchArtists = (searchQuery: string) => {
     if (searchQuery !== '') {
       onArtistsSearch(searchQuery);
     }
-  }
+  };
 
   return (
     <>
@@ -40,7 +41,7 @@ const ArtistSearch = ({ artists, onArtistsSearch, onAlbumsSearch }: ArtistSearch
       </Wrapper>
     </>
   );
-}
+};
 
 export default ArtistSearch;
 

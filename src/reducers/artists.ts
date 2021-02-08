@@ -2,8 +2,7 @@ import * as actions from '../actions';
 
 const artistsReducer = (
   state = {},
-  // @ts-ignore
-  action,
+  action: actions.SetArtistsAction,
 ) => {
   switch (action.type) {
     case actions.SET_ARTISTS:

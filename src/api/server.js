@@ -1,5 +1,5 @@
-const express = require('express'); // Express web server framework
-const request = require('request'); // "Request" library
+const express = require('express');
+const request = require('request');
 const cors = require('cors');
 const querystring = require('querystring');
 const cookieParser = require('cookie-parser');
@@ -14,9 +14,9 @@ const generateRandomString = function(length) {
   return text;
 };
 
-const client_id = '7f45827da0944e2fada1822b763b5685'; // Your client id
-const client_secret = 'def69281b23047fc8d1701af7b765d21'; // Your secret
-const redirect_uri = 'http://localhost:8888/redirect'; // Your redirect uri
+const client_id = '7f45827da0944e2fada1822b763b5685';
+const client_secret = 'def69281b23047fc8d1701af7b765d21';
+const redirect_uri = 'http://localhost:8888/redirect';
 
 const stateKey = 'spotify_auth_state';
 const app = express();
@@ -33,10 +33,6 @@ app.use(express.static(__dirname + '/public'))
   .use(cors())
   .use(cookieParser())
   .use(allowCrossDomain);
-
-app.get('/', (req, res) => {
-  res.send({ message: 'Hello World'})
-})
 
 app.get('/login', function(req, res) {
   const state = generateRandomString(16);

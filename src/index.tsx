@@ -10,7 +10,7 @@ import App from './App';
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    font-family: "SF Pro", sans-serif;
+    font-family: "SF Pro", "Arial", sans-serif;
     color: #222222;
   }
 `;

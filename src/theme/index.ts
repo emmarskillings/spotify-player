@@ -1,14 +1,4 @@
-import palette from './palette';
-
 const theme = {
-  ...palette,
-  //
-  // animations,
-  // button,
-  // input,
-  // popovers,
-
-  // Borders
   borderRadius: '3px',
 
   // Default container "max-widths"

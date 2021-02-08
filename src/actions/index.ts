@@ -5,8 +5,8 @@ export const SET_ALBUMS = 'Setting albums.';
 
 export const searchArtists = (searchQuery: string) => ({
   type: SEARCH_ARTISTS,
-  payload: { searchQuery }
-})
+  payload: { searchQuery },
+});
 
 export const setArtists = (artists: Object) => ({
   type: SET_ARTISTS,
@@ -23,15 +23,7 @@ export const setAlbums = (albums: Object, artistName: string) => ({
   payload: { albums, artistName },
 } as const);
 
-
-
 export type SearchArtistsAction = ReturnType<typeof searchArtists>;
 export type SetArtistsAction = ReturnType<typeof setArtists>;
 export type SearchAlbumsAction = ReturnType<typeof searchAlbums>;
 export type SetAlbumsAction = ReturnType<typeof setAlbums>;
-
-export type Actions =
-  | SearchArtistsAction
-  | SetArtistsAction
-  | SearchAlbumsAction
-  | SetAlbumsAction;
