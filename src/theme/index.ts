@@ -1,6 +1,6 @@
 import palette from './palette';
 
-export default {
+const theme = {
   ...palette,
   //
   // animations,
@@ -27,3 +27,5 @@ export default {
   fontWeightNormal: 400,
   fontWeightBold: 700,
 };
+
+export default theme;

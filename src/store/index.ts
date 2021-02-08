@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import albumsReducer from '../reducers/albums';
 import artistsReducer from '../reducers/artists';
+import registerSagas from '../sagas/registerSagas';
 
 const sagaMiddleware = createSagaMiddleware();
 const enhancers = [applyMiddleware(sagaMiddleware)];
@@ -17,5 +18,7 @@ const reducers = combineReducers({
 });
 
 const store = createStore(reducers, compose(...enhancers));
+
+registerSagas(sagaMiddleware);
 
 export default store;

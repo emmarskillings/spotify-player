@@ -1,36 +1,29 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import Header from "../Header";
+import Header from '../Header';
+import {ArtistSearchDispatchProps} from './index';
 
-type ArtistSearchProps = {
-  handleSearch: Function,
-}
-
-const ArtistSearch = ({ handleSearch }: ArtistSearchProps) => {
+const ArtistSearch = (props: ArtistSearchDispatchProps) => {
   const [ artistName, setArtistName ] = React.useState('');
   const [ message, setMessage ] = React.useState('');
 
-  const handleArtistSearch = (event: {
-    keyCode: number;
-    target: { value: any; };
-    preventDefault: () => void; }) => {
-    event.preventDefault();
-
+  const handleInputChange = (event: { target: { value: any; }; keyCode: number; }) => {
     const name = event.target.value;
     if (event.keyCode === 13) {
       setArtistName(name);
+      handleArtistSearch()
     }
+  }
 
+  const handleArtistSearch = () => {
     if (artistName !== '') {
       setMessage('');
-      handleSearch(artistName);
+      props.onArtistSearch(artistName);
     } else {
       setMessage('Please enter an artist\'s name')
     }
   }
-
-  console.log(artistName)
   return (
     <>
       <Header />
@@ -38,7 +31,7 @@ const ArtistSearch = ({ handleSearch }: ArtistSearchProps) => {
         <SearchBar
           placeholder="Search for an artist"
           // @ts-ignore
-          onKeyUp={handleArtistSearch}
+          onKeyUp={handleInputChange}
         />
       </Search>
       <Message>{message !== '' && message}</Message>

@@ -6,7 +6,7 @@ const accent2 = '#3A606E';
 const text = '#242728';
 
 
-export default {
+const palette = {
   primary,
   secondary,
   tertiary,
@@ -14,3 +14,5 @@ export default {
   accent2,
   text,
 }
+
+export default palette;

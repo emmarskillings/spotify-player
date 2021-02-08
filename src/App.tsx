@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Home from './components/Home';
 import Redirect from './components/Redirect';
-import ArtistSearch from './components/ArtistSearch/ArtistSearch';
+import ArtistSearch from './components/ArtistSearch';
 import NotFound from './components/NotFound';
 
 const App = () => {
