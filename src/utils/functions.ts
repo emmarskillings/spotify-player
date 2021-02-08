@@ -15,10 +15,10 @@ export const getHashParams = () => {
 
 export const setAuthHeader = () => {
   try {
-    const params = JSON.parse(localStorage.getItem('params') as string);
+    const accessToken = JSON.parse(localStorage.getItem('accessToken') as string);
 
-    if (params) {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${params.access_token}`;
+    if (accessToken) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
     }
   } catch (error) {
     console.log('Error setting auth', error);

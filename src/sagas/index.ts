@@ -9,9 +9,9 @@ import * as actions from '../actions';
 import { get } from '../utils/api';
 
 async function apiArtistSearch(artistName: string) {
-  const API_URL = `https://api.spotify.com/v1/search?query=${encodeURIComponent(
+  const API_URL = `https://api.spotify.com/v1/search?q=${encodeURIComponent(
     artistName
-  )}&type=album,playlist,artist`;
+  )}&type=artist`;
 
   return await get(API_URL);
 }

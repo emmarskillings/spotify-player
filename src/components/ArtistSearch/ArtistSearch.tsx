@@ -8,23 +8,21 @@ import ArtistCard from "./ArtistCard";
 type ArtistSearchProps = ArtistSearchStateProps & ArtistSearchDispatchProps;
 
 const ArtistSearch = ({ artists, onArtistSearch }: ArtistSearchProps) => {
-  const [ artistName, setArtistName ] = React.useState('');
   const [ message, setMessage ] = React.useState('');
 
   const handleInputChange = (event: { target: { value: any; }; keyCode: number; }) => {
     const name = event.target.value;
     if (event.keyCode === 13) {
-      setArtistName(name);
-      handleArtistSearch()
+      handleArtistSearch(name)
     }
   }
 
-  const handleArtistSearch = () => {
+  const handleArtistSearch = (artistName: string) => {
     if (artistName !== '') {
       setMessage('');
       onArtistSearch(artistName);
     } else {
-      setMessage('Please enter an artist\'s name')
+      setMessage('Please enter an artist\'s name');
     }
   }
 
