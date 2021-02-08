@@ -16,7 +16,7 @@ const Albums = ({ albums, artist }: AlbumsStateProps) => (
     </Title>
     <Wrapper>
       {albums && albums.length > 0 && albums.map(album => (
-        <AlbumCard key={album.uri} album={album} artist={artist} />
+        <AlbumCard key={album.uri} album={album} />
       ))}
     </Wrapper>
   </>

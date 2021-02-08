@@ -6,12 +6,7 @@ const albumsReducer = (
 ) => {
   switch (action.type) {
     case actions.SET_ALBUMS:
-      const { albums, artistName } = action.payload;
-
-      return {
-        albums: albums.items,
-        artist: artistName,
-      };
+      return action.payload.albums.items
 
     default:
       return state;

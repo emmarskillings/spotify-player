@@ -45,7 +45,7 @@ function* albumSearch({ payload }: actions.SearchAlbumsAction) {
     const result = yield call(apiAlbumSearch, artistName);
     const { albums } = result;
 
-    yield put(actions.setAlbums(albums, artistName));
+    yield put(actions.setAlbums(albums));
   } catch (error) {
     console.log('error', error);
   }

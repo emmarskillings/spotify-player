@@ -18,9 +18,9 @@ export const searchAlbums = (artistName: string) => ({
   payload: { artistName },
 })
 
-export const setAlbums = (albums: Object, artistName: string) => ({
+export const setAlbums = (albums: Object) => ({
   type: SET_ALBUMS,
-  payload: { albums, artistName },
+  payload: { albums },
 } as const);
 
 export type SearchArtistsAction = ReturnType<typeof searchArtists>;

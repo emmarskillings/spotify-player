@@ -7,11 +7,10 @@ export type AlbumsStateProps = {
 };
 
 const mapStateToProps = (state: Object) => {
-  const { albums: { albums, artist } } = state;
+  const { albums } = state;
 
   return {
-    albums,
-    artist,
+    albums
   };
 };
 

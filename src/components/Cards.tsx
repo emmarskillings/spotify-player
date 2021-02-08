@@ -47,13 +47,8 @@ export const ArtistCard = ({ artist, handleSearchAlbums }: ArtistCardProps) => {
   );
 };
 
-type AlbumCardProps = {
-  album: Object,
-  artist: string,
-};
-
 // Cards displayed on /albums page
-export const AlbumCard = ({ album, artist }: AlbumCardProps) => {
+export const AlbumCard = ({ album }: Object) => {
   const date = album.release_date;
 
   return (
@@ -61,10 +56,16 @@ export const AlbumCard = ({ album, artist }: AlbumCardProps) => {
       <div>
         <Image image={album.images && album.images[0] && album.images[0].url} />
         <Details>
-          <Name>{album.name}</Name>
-          <Followers>{artist}</Followers>
-          <Text>{date}</Text>
-          <Text>{album.total_tracks} tracks</Text>
+          <div>
+            <Name>{album.name}</Name>
+            {album.artists.map((artist: Object) => (
+              <Artist>{artist.name}</Artist>
+            ))}
+          </div>
+          <TextDiv>
+            <Text>{date}</Text>
+            <Text>{album.total_tracks} tracks</Text>
+          </TextDiv>
         </Details>
       </div>
       <SpotifyButton>
@@ -102,8 +103,12 @@ const Image = styled.div<{ image: string }>`
 `;
 
 const Details = styled.div`
+  min-height: 100px;
   max-width: 100%;
   padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const Name = styled.div`
@@ -115,8 +120,17 @@ const Followers = styled.div`
   padding: 5px 0 15px 0;
 `;
 
+const Artist = styled.div`
+  font-size: 14px;
+  line-height: 18px;
+`;
+
 const Popularity = styled.div`
   font-size: 18px;
+`;
+
+const TextDiv = styled.div`
+  margin-top: 15px;
 `;
 
 const Text = styled.div`
