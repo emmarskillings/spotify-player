@@ -1,11 +1,25 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
+import { useHistory } from 'react-router-dom';
+
 const formatLongNumber = (number: number) => {
   return number.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 
-const ArtistCard = ({ artist }: Object) => {
+type ArtistCardProps = {
+  artist: Object,
+  handleSearchAlbums: Function,
+}
+
+export const ArtistCard = ({ artist, handleSearchAlbums }: ArtistCardProps) => {
+  const history = useHistory();
+
+  const handleSelectArtist = (artistName: string) => {
+    handleSearchAlbums(artistName)
+    history.push('/albums');
+  };
+
   const followers = formatLongNumber(artist.followers.total);
   const popularity = Math.round(artist.popularity / 20);
   const stars = [];
@@ -15,7 +29,7 @@ const ArtistCard = ({ artist }: Object) => {
   }
 
   return (
-    <Card>
+    <Card onClick={() => handleSelectArtist(artist.name)}>
       <Image image={artist.images && artist.images[0] && artist.images[0].url} />
       <Details>
         <Name>{artist.name}</Name>
@@ -31,10 +45,28 @@ const ArtistCard = ({ artist }: Object) => {
   )
 }
 
-export default ArtistCard;
+type AlbumCardProps = {
+  album: Object,
+  artist: string,
+}
+
+export const AlbumCard = ({ album, artist }: AlbumCardProps) => {
+  return (
+    <Card>
+      <Image image={album.images && album.images[0] && album.images[0].url} />
+      <Details>
+        <Name>{album.name}</Name>
+        <Followers>{artist}</Followers>
+        <Text>{album.release_date}</Text>
+        <Text>{album.total_tracks}</Text>
+      </Details>
+      <SpotifyButton><a href={album.external_urls.spotify} target="_blank">Preview on Spotify</a></SpotifyButton>
+    </Card>
+  )
+}
 
 const Card = styled.div`
-  height: 350px;
+  min-height: 400px;
   width: 250px;
   background-color: lightgrey;
   margin: 20px 10px;
@@ -44,7 +76,7 @@ const Card = styled.div`
 `;
 
 const Image = styled.div<{ image: string }>`
-  height: 75%;
+  height: 250px;
   width: 100%;
   background-color: black;
   background-image: url(${ props => props.image });
@@ -55,7 +87,7 @@ const Image = styled.div<{ image: string }>`
 
 const Details = styled.div`
   max-width: 100%;
-  padding: 5px;
+  padding: 10px 15px;
 `;
 
 const Name = styled.div`
@@ -69,4 +101,11 @@ const Followers = styled.div`
 
 const Popularity = styled.div`
   font-size: 18px;
+`;
+
+const Text = styled.div`
+  font-size: 14px;
+`;
+
+const SpotifyButton = styled.button`
 `;

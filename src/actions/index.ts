@@ -1,43 +1,37 @@
-export const SEARCH_ARTIST = 'Searching for artist...';
+export const SEARCH_ARTISTS = 'Searching for artists...';
+export const SET_ARTISTS = 'Setting artists.';
+export const SEARCH_ALBUMS = 'Searching for albums...';
 export const SET_ALBUMS = 'Setting albums.';
-export const ADD_ALBUMS = 'Adding albums.';
-export const SET_ARTISTS = 'Setting artists';
-export const ADD_ARTISTS = 'Adding artists';
 
-export const searchArtist = (artistName: string) => ({
-  type: SEARCH_ARTIST,
-  payload: { artistName }
+export const searchArtists = (searchQuery: string) => ({
+  type: SEARCH_ARTISTS,
+  payload: { searchQuery }
 })
-
-export const setAlbums = (albums: Object) => ({
-  type: SET_ALBUMS,
-  payload: { albums },
-} as const);
-
-export const addAlbums = (albums: Object) => ({
-  type: ADD_ALBUMS,
-  payload: { albums },
-} as const);
 
 export const setArtists = (artists: Object) => ({
   type: SET_ARTISTS,
   payload: { artists },
 } as const );
 
-export const addArtists = (artists: Object) => ({
-  type: ADD_ARTISTS,
-  payload: { artists},
-});
+export const searchAlbums = (artistName: string) => ({
+  type: SEARCH_ALBUMS,
+  payload: { artistName },
+})
 
-export type SearchArtistAction = ReturnType<typeof searchArtist>;
-export type SetAlbumsAction = ReturnType<typeof setAlbums>;
-export type AddAlbumsAction = ReturnType<typeof addAlbums>;
+export const setAlbums = (albums: Object, artistName: string) => ({
+  type: SET_ALBUMS,
+  payload: { albums, artistName },
+} as const);
+
+
+
+export type SearchArtistsAction = ReturnType<typeof searchArtists>;
 export type SetArtistsAction = ReturnType<typeof setArtists>;
-export type AddARtistsAction = ReturnType<typeof addArtists>;
+export type SearchAlbumsAction = ReturnType<typeof searchAlbums>;
+export type SetAlbumsAction = ReturnType<typeof setAlbums>;
 
 export type Actions =
-  | SearchArtistAction
-  | SetAlbumsAction
-  | AddAlbumsAction
+  | SearchArtistsAction
   | SetArtistsAction
-  | AddARtistsAction;
+  | SearchAlbumsAction
+  | SetAlbumsAction;

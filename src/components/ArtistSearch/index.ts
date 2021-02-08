@@ -8,7 +8,8 @@ export type ArtistSearchStateProps = {
 }
 
 export type ArtistSearchDispatchProps = {
-  onArtistSearch: Function,
+  onArtistsSearch: Function,
+  onAlbumsSearch: Function,
 }
 
 const mapStateToProps = (state: Object) => {
@@ -20,7 +21,8 @@ const mapStateToProps = (state: Object) => {
 };
 
 const mapDispatchToProps = (dispatch: Function): ArtistSearchDispatchProps => ({
-  onArtistSearch: (artistName: string) => dispatch(actions.searchArtist(artistName)),
+  onArtistsSearch: (searchQuery: string) => dispatch(actions.searchArtists(searchQuery)),
+  onAlbumsSearch: (artistName: string) => dispatch(actions.searchAlbums(artistName)),
 });
 
 const ArtistSearchContainer = connect(

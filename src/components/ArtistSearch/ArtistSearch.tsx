@@ -2,27 +2,22 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import Header from '../Header';
-import {ArtistSearchDispatchProps, ArtistSearchStateProps} from './index';
-import ArtistCard from "./ArtistCard";
+import { ArtistSearchDispatchProps, ArtistSearchStateProps } from './index';
+import { ArtistCard } from "../Cards";
 
 type ArtistSearchProps = ArtistSearchStateProps & ArtistSearchDispatchProps;
 
-const ArtistSearch = ({ artists, onArtistSearch }: ArtistSearchProps) => {
-  const [ message, setMessage ] = React.useState('');
-
+const ArtistSearch = ({ artists, onArtistsSearch, onAlbumsSearch }: ArtistSearchProps) => {
   const handleInputChange = (event: { target: { value: any; }; keyCode: number; }) => {
-    const name = event.target.value;
+    const query = event.target.value;
     if (event.keyCode === 13) {
-      handleArtistSearch(name)
+      handleSearchArtists(query)
     }
   }
 
-  const handleArtistSearch = (artistName: string) => {
-    if (artistName !== '') {
-      setMessage('');
-      onArtistSearch(artistName);
-    } else {
-      setMessage('Please enter an artist\'s name');
+  const handleSearchArtists = (searchQuery: string) => {
+    if (searchQuery !== '') {
+      onArtistsSearch(searchQuery);
     }
   }
 
@@ -36,14 +31,13 @@ const ArtistSearch = ({ artists, onArtistSearch }: ArtistSearchProps) => {
           onKeyUp={handleInputChange}
         />
       </Search>
-      <Artists>
+      <Wrapper>
         {artists && artists.length > 0 && artists.map(artist => {
           return (
-            <ArtistCard key={artist.uri} artist={artist} />
+            <ArtistCard key={artist.uri} artist={artist} handleSearchAlbums={onAlbumsSearch}/>
           )
         })}
-      </Artists>
-      <Message>{message !== '' && message}</Message>
+      </Wrapper>
     </>
   );
 }
@@ -65,14 +59,11 @@ const SearchBar = styled.input`
   padding-left: 10px;
 `;
 
-const Artists = styled.div`
+export const Wrapper = styled.div`
   max-width: 100vw;
   padding: 0 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   margin: auto;
-`;
-
-const Message = styled.div`
 `;
